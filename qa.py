@@ -3,7 +3,7 @@ import os
 cur_file_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(cur_file_path)
 from components.q2intent import intent_extraction
-from components.serch_engine import SearchEngine
+from components.search_engine import SearchEngine
 from components.answer_generation import AnswerGenerator
 from genai.itf import OpenAIITF
 

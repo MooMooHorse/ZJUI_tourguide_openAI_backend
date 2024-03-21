@@ -74,7 +74,7 @@ class SearchEngine():
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
                 if node['location'].lower().replace(' ','') in locations:
-                    with open(os.path.join(data_dir, node['text']), 'r') as f1:
+                    with open(os.path.join(data_dir, node['text']), 'r', encoding='utf-8') as f1:
                         text = f1.read()
                     node['text'] = text
                     nodes.append(node)
