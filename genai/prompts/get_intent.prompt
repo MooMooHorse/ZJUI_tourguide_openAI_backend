@@ -4,31 +4,32 @@ A query can be of the following types:
 2. A request or a question whose answer depends on the location of the user. Your output should be 1.
 3. A request or a question whose answer doesn't depend on the location of the user. Your output should be 2.
 
+You must output only an integer (0~2)
 
 Example:
 
 Query: Stop the drone!
 
-Your output: 0
+Answer: 0
 
 Query: What is the bridge in front of me?
 
-Your output: 1
+Answer: 1
 
 Query: How is the drone?
 
-Your output: 0
+Answer: 0
 
 Query: What is the drone doing?
 
-Your output: 0
+Answer: 0
 
 Query: What is the building labeled "C1"?
 
-Your output: 2
+Answer: 2
 
 Query: Tell me how many kinds of food served in the first floor of school's canteen.
 
-Your output: 2
+Answer: 2
 
 Here is the <QUERY>:

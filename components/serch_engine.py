@@ -35,7 +35,7 @@ class SearchEngine():
                 "content": question
             }
         ]
-        return itf.get_chat_completion_content(message_list)
+        return itf.get_chat_completion_content(message_list, temperature=0)
 
     def search(self, question:str, cur_location:str, type:int) -> List[dict]:
         '''
@@ -62,15 +62,23 @@ class SearchEngine():
                 candidates_locations.append(node['location'])
 
         if type == 1:
-            location = self.get_location(question, candidates_locations)
+            locations = json.loads(self.get_location(question, candidates_locations))
         elif type == 2:
-            location = cur_location
+            locations = [cur_location]
+        
+        for i in range(len(locations)):
+            locations[i] = locations[i].lower().replace(' ', '')
 
+        
         for file in node_files:
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
-                if node['location'] == location:
+                if node['location'].lower().replace(' ','') in locations:
+                    with open(os.path.join(data_dir, node['text']), 'r') as f1:
+                        text = f1.read()
+                    node['text'] = text
                     nodes.append(node)
+                    
         return nodes
 
 

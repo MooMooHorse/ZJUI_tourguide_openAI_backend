@@ -160,7 +160,6 @@ cython_debug/
 #.idea/
 
 data/*.csv
-data/*.json
 data/*.xlsx
 data/zips/
 config.*

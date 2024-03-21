@@ -92,7 +92,8 @@ def test_1():
     messages = [
         {"role": "system", "content" : "Hello, how are you doing today?"}
     ]
-    print(itf.get_chat_completion_content(messages))
+    print(messages)
+    print(itf.get_chat_completion_content(messages, temperature=0))
 
 if __name__ == '__main__':
     test_1()

@@ -10,7 +10,7 @@ class AnswerGenerator():
     def __init__(self):
         pass
 
-    def generate(question:str, related_nodes: List[dict], itf:OpenAIITF = None, prompt_name:str = "get_answer.prompt") -> str:
+    def generate(self, question:str, related_nodes: List[dict], itf:OpenAIITF = None, prompt_name:str = "get_answer.prompt") -> str:
         '''
             Generate the answer to the question based on the related nodes
 
@@ -48,7 +48,7 @@ class AnswerGenerator():
             }
         ]
 
-        completion = itf.get_chat_completion_content(messages=message_list)
+        completion = itf.get_chat_completion_content(messages=message_list, temperature=0)
         
         return completion
     
