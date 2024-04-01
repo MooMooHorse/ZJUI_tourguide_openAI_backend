@@ -78,7 +78,8 @@ class SearchEngine():
                         text = f1.read()
                     node['text'] = text
                     nodes.append(node)
-                    
+        
+
         return nodes
 
 
