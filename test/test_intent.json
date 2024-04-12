@@ -1,0 +1,502 @@
+[
+    {
+        "index": 1,
+        "query": "Fly the drone to the ZJUI Building.",
+        "answer": 0
+    },
+    {
+        "index": 2,
+        "query": "Where can I find the nearest restroom?",
+        "answer": 1
+    },
+    {
+        "index": 3,
+        "query": "What time does the Dining Hall open?",
+        "answer": 2
+    },
+    {
+        "index": 4,
+        "query": "Take a photo of the Library.",
+        "answer": 0
+    },
+    {
+        "index": 5,
+        "query": "How late is the Lab open tonight?",
+        "answer": 2
+    },
+    {
+        "index": 6,
+        "query": "Direct the drone to the Lab area.",
+        "answer": 0
+    },
+    {
+        "index": 7,
+        "query": "What's the menu in the Dining Hall today?",
+        "answer": 2
+    },
+    {
+        "index": 8,
+        "query": "Show me the way to the ZJUI Building.",
+        "answer": 1
+    },
+    {
+        "index": 9,
+        "query": "Can you give me the library hours?",
+        "answer": 2
+    },
+    {
+        "index": 10,
+        "query": "Increase the drone's altitude.",
+        "answer": 0
+    },
+    {
+        "index": 11,
+        "query": "What events are happening in the ZJUI Building?",
+        "answer": 2
+    },
+    {
+        "index": 12,
+        "query": "How can I get to the Library from here?",
+        "answer": 1
+    },
+    {
+        "index": 13,
+        "query": "Land the drone near the Dining Hall.",
+        "answer": 0
+    },
+    {
+        "index": 14,
+        "query": "Is the nearest printer in the Lab working?",
+        "answer": 1
+    },
+    {
+        "index": 15,
+        "query": "What courses are available in the Lab?",
+        "answer": 2
+    },
+    {
+        "index": 16,
+        "query": "Navigate the drone to the central courtyard.",
+        "answer": 0
+    },
+    {
+        "index": 17,
+        "query": "Where is the lost and found in the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 18,
+        "query": "Tell me about the history of the ZJUI Building.",
+        "answer": 2
+    },
+    {
+        "index": 19,
+        "query": "Hover the drone over the sports field.",
+        "answer": 0
+    },
+    {
+        "index": 20,
+        "query": "Where can I charge my laptop in the Library?",
+        "answer": 1
+    },
+    {
+        "index": 21,
+        "query": "Adjust the drone's camera focus.",
+        "answer": 0
+    },
+    {
+        "index": 22,
+        "query": "Is there a study room available in the Library?",
+        "answer": 1
+    },
+    {
+        "index": 23,
+        "query": "What are the operating hours for the Lab?",
+        "answer": 2
+    },
+    {
+        "index": 24,
+        "query": "Perform a 360-degree spin with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 25,
+        "query": "How do I reserve a seat in the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 26,
+        "query": "What's the wifi password for the ZJUI Building?",
+        "answer": 2
+    },
+    {
+        "index": 27,
+        "query": "Send the drone to inspect the rooftop.",
+        "answer": 0
+    },
+    {
+        "index": 28,
+        "query": "Where can I print documents in the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 29,
+        "query": "List all majors offered at ZJU-UIUC campuses.",
+        "answer": 2
+    },
+    {
+        "index": 30,
+        "query": "Return the drone to the launching point.",
+        "answer": 0
+    },
+    {
+        "index": 31,
+        "query": "What are the emergency evacuation points near the Lab?",
+        "answer": 1
+    },
+    {
+        "index": 32,
+        "query": "When was the ZJU-UIUC partnership established?",
+        "answer": 2
+    },
+    {
+        "index": 33,
+        "query": "Check the battery status of the drone.",
+        "answer": 0
+    },
+    {
+        "index": 34,
+        "query": "How can I get a library card?",
+        "answer": 1
+    },
+    {
+        "index": 35,
+        "query": "Who is the dean of ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 36,
+        "query": "Set the drone to follow mode.",
+        "answer": 0
+    },
+    {
+        "index": 37,
+        "query": "Can I eat my own food in the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 38,
+        "query": "What are the graduation requirements for ZJU-UIUC students?",
+        "answer": 2
+    },
+    {
+        "index": 39,
+        "query": "Calibrate the drone's sensors.",
+        "answer": 0
+    },
+    {
+        "index": 40,
+        "query": "Where is the faculty office in the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 41,
+        "query": "Provide a map of ZJU-UIUC campuses.",
+        "answer": 2
+    },
+    {
+        "index": 42,
+        "query": "Make the drone hover over the main gate.",
+        "answer": 0
+    },
+    {
+        "index": 43,
+        "query": "Where can I find the lost and found in the Library?",
+        "answer": 1
+    },
+    {
+        "index": 44,
+        "query": "How many students are enrolled at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 45,
+        "query": "Initiate the drone's return-to-home function.",
+        "answer": 0
+    },
+    {
+        "index": 46,
+        "query": "What time does the gym near the Lab close?",
+        "answer": 1
+    },
+    {
+        "index": 47,
+        "query": "What is the history of the ZJUI Building's architecture?",
+        "answer": 2
+    },
+    {
+        "index": 48,
+        "query": "Update the drone's mapping software.",
+        "answer": 0
+    },
+    {
+        "index": 49,
+        "query": "Is the computer lab in the Library open today?",
+        "answer": 1
+    },
+    {
+        "index": 50,
+        "query": "Describe the student exchange program with UIUC.",
+        "answer": 2
+    },
+    {
+        "index": 51,
+        "query": "Can the drone fly inside the Lab?",
+        "answer": 0
+    },
+    {
+        "index": 52,
+        "query": "What is the capacity of the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 53,
+        "query": "Are there any guest lectures at ZJUI Building this week?",
+        "answer": 2
+    },
+    {
+        "index": 54,
+        "query": "Program the drone to patrol the campus perimeter.",
+        "answer": 0
+    },
+    {
+        "index": 55,
+        "query": "Where can I buy textbooks near the Library?",
+        "answer": 1
+    },
+    {
+        "index": 56,
+        "query": "What clubs are available for students at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 57,
+        "query": "Enable the drone's night vision mode.",
+        "answer": 0
+    },
+    {
+        "index": 58,
+        "query": "Is there a bike parking near the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 59,
+        "query": "How to apply for scholarships at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 60,
+        "query": "Record video with the drone over the main square.",
+        "answer": 0
+    },
+    {
+        "index": 61,
+        "query": "Which department is the biggest in the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 62,
+        "query": "When is the next open day for ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 63,
+        "query": "Collect temperature data with the drone around the Lab.",
+        "answer": 0
+    },
+    {
+        "index": 64,
+        "query": "How can I access the rooftop of the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 65,
+        "query": "What is the policy on late assignments for courses at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 66,
+        "query": "Use the drone to monitor traffic in front of the Dining Hall.",
+        "answer": 0
+    },
+    {
+        "index": 67,
+        "query": "Where is the student counseling center located?",
+        "answer": 1
+    },
+    {
+        "index": 68,
+        "query": "Who are the founding members of ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 69,
+        "query": "Perform a noise level analysis with the drone at the sports field.",
+        "answer": 0
+    },
+    {
+        "index": 70,
+        "query": "Can I access the Lab after hours?",
+        "answer": 1
+    },
+    {
+        "index": 71,
+        "query": "What exchange programs are offered with UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 72,
+        "query": "Survey the construction site with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 73,
+        "query": "Are pets allowed in the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 74,
+        "query": "What is the process for academic appeals at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 75,
+        "query": "Measure the wind speed at different heights above the campus with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 76,
+        "query": "What are the opening hours of the campus gym?",
+        "answer": 1
+    },
+    {
+        "index": 77,
+        "query": "List the postgraduate programs at ZJU-UIUC.",
+        "answer": 2
+    },
+    {
+        "index": 78,
+        "query": "Deliver a package to the top floor of the Library with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 79,
+        "query": "Where is the nearest coffee shop to the Lab?",
+        "answer": 1
+    },
+    {
+        "index": 80,
+        "query": "What are the library fines at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 81,
+        "query": "Conduct a thermal scan of the ZJUI Building with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 82,
+        "query": "How do I report a lost item in the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 83,
+        "query": "What is the student-to-faculty ratio at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 84,
+        "query": "Map the campus parking lots with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 85,
+        "query": "What are the most popular majors at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 86,
+        "query": "Where can I get first aid in the ZJUI Building?",
+        "answer": 1
+    },
+    {
+        "index": 87,
+        "query": "Broadcast a live feed from the drone during the campus festival.",
+        "answer": 0
+    },
+    {
+        "index": 88,
+        "query": "Are there any quiet study areas in the Library?",
+        "answer": 1
+    },
+    {
+        "index": 89,
+        "query": "What is the average class size for undergraduate courses at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 90,
+        "query": "Inspect the solar panels on the Lab roof with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 91,
+        "query": "Is there a place to recharge electric vehicles near the Dining Hall?",
+        "answer": 1
+    },
+    {
+        "index": 92,
+        "query": "What sustainability initiatives are in place at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 93,
+        "query": "Use the drone to display a banner in the sky for the university anniversary.",
+        "answer": 0
+    },
+    {
+        "index": 94,
+        "query": "Where can I find a tutor for my calculus course?",
+        "answer": 1
+    },
+    {
+        "index": 95,
+        "query": "How can international students apply for housing at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 96,
+        "query": "Perform a light show with the drone for the graduation ceremony.",
+        "answer": 0
+    },
+    {
+        "index": 97,
+        "query": "What is the procedure to book a group study room in the Library?",
+        "answer": 1
+    },
+    {
+        "index": 98,
+        "query": "Who can use the fitness center at ZJU-UIUC?",
+        "answer": 2
+    },
+    {
+        "index": 99,
+        "query": "Check the air quality around the campus with the drone.",
+        "answer": 0
+    },
+    {
+        "index": 100,
+        "query": "How do I get a parking permit for the ZJUI Building area?",
+        "answer": 1
+    }
+]

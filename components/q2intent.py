@@ -12,8 +12,9 @@ def intent_extraction(query:str, itf:OpenAIITF = None, prompt_name:str = "get_in
         Returns
         -------
         int
-            0: intent is command
-            1: intent is question
+            1. A command to control the drone. Your output should be 0.
+            2. A request or a question whose answer depends on the location of the user. Your output should be 1.
+            3. A request or a question whose answer doesn't depend on the location of the user. Your output should be 2.
 
         Side-Effect
         ------------

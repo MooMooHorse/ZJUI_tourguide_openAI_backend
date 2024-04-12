@@ -48,6 +48,19 @@ class SearchEngine():
         List[dict]: nodes
 
         '''
+        def _sanity_chk_locations(locations:List[str], _candidates:List[str]) -> bool:
+            candidates = _candidates.copy()
+            # if locations not a list, return False
+            if not isinstance(locations, list):
+                return False
+            for index, candidate in enumerate(candidates):
+                candidates[index] = candidate.lower().replace(' ', '')
+            
+            for location in locations:
+                if location.lower().replace(' ','') not in candidates:
+                    return False
+            return True
+
         if type == 0:
             return None
         
@@ -60,20 +73,28 @@ class SearchEngine():
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
                 candidates_locations.append(node['location'])
+        q_locations = json.loads(self.get_location(question, candidates_locations))
 
-        if type == 1:
-            locations = json.loads(self.get_location(question, candidates_locations))
+        if type == 1 or cur_location in q_locations:
+            locations = q_locations
         elif type == 2:
-            locations = [cur_location]
+            locations = [cur_location] + q_locations
         
+        # log choosing candidate locations
+        print(f"Choosing candidate locations: {locations} among {candidates_locations}")
+
+        if not _sanity_chk_locations(locations, candidates_locations):
+            return []
+        
+
         for i in range(len(locations)):
             locations[i] = locations[i].lower().replace(' ', '')
 
-        
         for file in node_files:
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
                 if node['location'].lower().replace(' ','') in locations:
+                    print(node['text'])
                     with open(os.path.join(data_dir, node['text']), 'r', encoding='utf-8') as f1:
                         text = f1.read()
                     node['text'] = text

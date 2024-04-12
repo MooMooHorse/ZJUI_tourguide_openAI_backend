@@ -6,3 +6,7 @@ tiktoken
 openai
 scikit-learn
 tqdm
+pysocks
+fitz
+wordcloud
+re

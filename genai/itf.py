@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm 
 cur_dir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.dirname((cur_dir)))
-from paths import openai_config_path
+from paths import openai_config_path, openai_env_path
 from genai.logger import OpenAI_Logger
 
 class OpenAIITF():
@@ -81,8 +81,12 @@ class OpenAIITF():
         import openai, json
         with open(openai_config_path, "r") as f:
             config = json.load(f)
+        with open(openai_env_path, "r") as f:
+            env = json.load(f)
+
         openai.api_key = config["api_key"]
         # set the environment variable
+        os.environ["https_proxy"] = env["https_proxy"]
         os.environ["OPENAI_API_KEY"] = config["api_key"]
 
     
