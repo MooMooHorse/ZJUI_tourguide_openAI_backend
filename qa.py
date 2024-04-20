@@ -59,12 +59,22 @@ def integrated_mode(question = None):
         parser.add_argument("-q", "--question", type=str, required=True)
         args = parser.parse_args()
         question = args.question
-        answer = query(question)
+        try:
+            answer = query(question)
+        except Exception as e:
+            from traceback import format_exc
+            stack_info = format_exc()
+            answer = f"Error: {str(e)}\n{stack_info}"
         return question, answer
     if question is None:
         question, answer = _read_qa_from_cmd()
     else:
-        answer = query(question)
+        try:
+            answer = query(question)
+        except Exception as e:
+            from traceback import format_exc
+            stack_info = format_exc()
+            answer = f"Error: {str(e)}\n{stack_info}"
     # log the question and answer
     work_item = {
         "question": question,
