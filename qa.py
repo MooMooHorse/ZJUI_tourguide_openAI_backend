@@ -6,7 +6,7 @@ from components.q2intent import intent_extraction
 from components.search_engine import SearchEngine
 from components.answer_generation import AnswerGenerator
 from genai.itf import OpenAIITF
-from paths import io_dir
+from agent_io.io_ops import read_input, write_output, append_input
 import json
 
 from typing import Literal, List
@@ -22,47 +22,10 @@ def query(query:str, location:Location="ZJUI Building") -> str:
     answer = ag.generate(query, nodes, itf=itf)
     return answer
 
-def read_input(input_fname:str = "agent_input.json") -> List[dict]:
+def unit_test_mode():
     '''
-    Return
-    ------
-    work_items: List[dict]
-        [
-            {
-                "q_id": <int>,
-                "question": <str>,
-                "enable": <bool>
-            }
-        ]
+        file I/O based unit test mode
     '''
-    fpath = os.path.join(io_dir, input_fname)
-    with open(fpath, 'r') as f:
-        questions = json.load(f)
-    work_items = []
-    for question in questions:
-        if question["enable"] == True:
-            work_items.append(question)
-    return work_items
-
-def write_output(work_items:List[dict], output_fname:str = "agent_output.json") -> None:
-    '''
-    Parameters
-    ----------
-    work_items: List[dict]
-        [
-            {
-                "q_id": <int>,
-                "question": <str>,
-                "enable": <bool>,
-                "answer": <str>
-            }
-        ]
-    '''
-    fpath = os.path.join(io_dir, output_fname)
-    with open(fpath, 'w') as f:
-        json.dump(work_items, f)
-
-if __name__ == '__main__':
     work_items = read_input()
     
     for work_item in work_items:
@@ -74,4 +37,44 @@ if __name__ == '__main__':
             work_item["answer"] = f"Error: {str(e)}\n{stack_info}"
     
     write_output(work_items)
+    
+
+def integrated_mode(question = None):
+    '''
+        file io will be used as logs
+
+        Input
+        -----
+        qa.py -q <question>
+
+        Side Effect
+        -----------
+        i/o will be loged at agent_input.json and agent_output.json under `io_dir`
+    '''
+    def _read_qa_from_cmd():
+        import argparse
+        # read parameters
+        import argparse
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-q", "--question", type=str, required=True)
+        args = parser.parse_args()
+        question = args.question
+        answer = query(question)
+        return question, answer
+    if question is None:
+        question, answer = _read_qa_from_cmd()
+    else:
+        answer = query(question)
+    # log the question and answer
+    work_item = {
+        "question": question,
+        "enable": True,
+        "answer": answer
+    }
+    # log the I/O
+    write_output([append_input(work_item)])
+
+
+if __name__ == '__main__':
+    integrated_mode()
 

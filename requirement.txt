@@ -9,4 +9,4 @@ tqdm
 pysocks
 fitz
 wordcloud
-re
+paramiko

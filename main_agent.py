@@ -1,6 +1,7 @@
 import json
 import paramiko
 import time
+from qa import integrated_mode
 
 def read_users_data():
     ssh = paramiko.SSHClient()
@@ -103,8 +104,7 @@ def main():
             if isNewQuestion:
                 print("New question:", question)
                 # send the question to the AI agent
-                ans = "Here is the answer to your question."  # replace this with the answer from the AI agent
-                print(ans)
+                ans = integrated_mode(question)
             
                 # send the answer to the server
                 send_message_to_server(ans)     
