@@ -74,3 +74,22 @@ def append_input(work_item:dict, input_fname:str = "agent_input.json") -> dict:
     work_item.update({"q_id": max_q_id + 1})
     return work_item
     
+def append_output(work_item:dict, output_fname:str = "agent_output.json") -> None:
+    '''
+    Append One work item to the output file
+    Parameters
+    ----------
+    work_item: dict
+        {
+            "q_id": <int>,
+            "question": <str>,
+            "enable": <bool>,
+            "answer": <str>
+        }
+    '''
+    fpath = os.path.join(io_dir, output_fname)
+    with open(fpath, 'r') as f:
+        questions = json.load(f)
+    questions.append(work_item)
+    with open(fpath, 'w') as f:
+        json.dump(questions, f)

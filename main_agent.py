@@ -89,7 +89,8 @@ def main():
     while(1):
         time.sleep(1)
         users_data = read_users_data()
-
+        if users_data is None:
+            continue
         for user in users_data:
             if user["userID"] not in q_ID:
                 q_ID[user["userID"]] = 0

@@ -5,7 +5,15 @@ sys.path.append(os.path.dirname(cur_file_path))
 from genai.itf import OpenAIITF
 from paths import prompt_dir, data_dir
 import json
-from typing import List
+from typing import List, Tuple
+
+def associate_q_w_request(question:str, cur_location:str, locations:List[str]) -> Tuple[str, List[str]]:
+    '''
+    If the question is asociated with the current location of user.
+    '''
+    locations = [cur_location] + locations
+    question = question + f''' I'm currently at {cur_location}.''' 
+    return question, locations
 
 class SearchEngine():
     def __init__(self):
@@ -79,6 +87,7 @@ class SearchEngine():
             locations = q_locations
         elif type == 2:
             locations = [cur_location] + q_locations
+            question, locations = associate_q_w_request(question, cur_location, locations)
         
         # log choosing candidate locations
         print(f"Choosing candidate locations: {locations} among {candidates_locations}")

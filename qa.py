@@ -11,7 +11,7 @@ import json
 
 from typing import Literal, List
 
-Location = Literal["ZJUI Building", "Dining Hall", "Convenience Shop", "Library", "North teaching building", "bell tower", "Print shop"]
+Location = Literal["ZJUI Building", "Dining Hall", "Convenience Shop", "Library", "North teaching building", "bell tower", "Print shop", "Lake"]
 
 def query(query:str, location:Location="ZJUI Building") -> str:
     itf = OpenAIITF()
@@ -83,7 +83,7 @@ def integrated_mode(question = None):
     }
     # log the I/O
     write_output([append_input(work_item)])
-
+    return answer
 
 if __name__ == '__main__':
     integrated_mode()

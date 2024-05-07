@@ -37,7 +37,7 @@ def intent_extraction(query:str, itf:OpenAIITF = None, prompt_name:str = "get_in
         }
     ]
 
-    completion = itf.get_chat_completion_content(messages=message_list, temperature=0)
+    completion = itf.get_chat_completion_content(messages=message_list, model = 'gpt-4', temperature=0)
     
     ret_type = int(completion)
 
