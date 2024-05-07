@@ -8,9 +8,28 @@ sys.path.append(os.path.dirname((cur_dir)))
 from paths import openai_config_path, openai_env_path
 from genai.logger import OpenAI_Logger
 
+def initialize_env():
+    """
+        Initializes the OpenAI environment.
+        
+        Side-effect
+        -----------
+        Sets the environment variable OPENAI_API_KEY.
+    """
+    import openai, json
+    with open(openai_config_path, "r") as f:
+        config = json.load(f)
+    with open(openai_env_path, "r") as f:
+        env = json.load(f)
+
+    openai.api_key = config["api_key"]
+    # set the environment variable
+    os.environ["https_proxy"] = env["https_proxy"]
+    os.environ["OPENAI_API_KEY"] = config["api_key"]
+
 class OpenAIITF():
     def __init__(self):
-        self.initialize_env()
+        initialize_env()
         self.logger = OpenAI_Logger()
         
     def get_chat_completion(self, messages, model="gpt-3.5-turbo", max_tokens=150, temperature=0.7, 
@@ -70,29 +89,12 @@ class OpenAIITF():
                                       is_called=1)
         return content
     
-    def initialize_env(self):
-        """
-            Initializes the OpenAI environment.
-            
-            Side-effect
-            -----------
-            Sets the environment variable OPENAI_API_KEY.
-        """
-        import openai, json
-        with open(openai_config_path, "r") as f:
-            config = json.load(f)
-        with open(openai_env_path, "r") as f:
-            env = json.load(f)
-
-        openai.api_key = config["api_key"]
-        # set the environment variable
-        os.environ["https_proxy"] = env["https_proxy"]
-        os.environ["OPENAI_API_KEY"] = config["api_key"]
+    
 
     
 def test_1():
     itf = OpenAIITF()
-    itf.initialize_env()
+    initialize_env()
     messages = [
         {"role": "system", "content" : "Hello, how are you doing today?"}
     ]

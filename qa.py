@@ -5,6 +5,7 @@ sys.path.append(cur_file_path)
 from components.q2intent import intent_extraction
 from components.search_engine import SearchEngine
 from components.answer_generation import AnswerGenerator
+from agents.location_qa_agent import LocationQAAgent
 from genai.itf import OpenAIITF
 from agent_io.io_ops import read_input, write_output, append_input
 import json
@@ -15,12 +16,11 @@ Location = Literal["ZJUI Building", "Dining Hall", "Convenience Shop", "Library"
 
 def query(query:str, location:Location="ZJUI Building") -> str:
     itf = OpenAIITF()
-    se = SearchEngine()
-    ag = AnswerGenerator()
-    intent = intent_extraction(query, itf=itf)
-    nodes = se.search(query, location, intent)
-    answer = ag.generate(query, nodes, itf=itf)
-    return answer
+    intent = intent_extraction(query, itf)
+    agent = LocationQAAgent(location, itf)
+    return agent.query(query, intent)
+
+
 
 def unit_test_mode():
     '''
@@ -51,7 +51,7 @@ def integrated_mode(question = None):
         -----------
         i/o will be loged at agent_input.json and agent_output.json under `io_dir`
     '''
-    def _read_qa_from_cmd():
+    def _read_q_from_cmd():
         import argparse
         # read parameters
         import argparse
@@ -59,22 +59,15 @@ def integrated_mode(question = None):
         parser.add_argument("-q", "--question", type=str, required=True)
         args = parser.parse_args()
         question = args.question
-        try:
-            answer = query(question)
-        except Exception as e:
-            from traceback import format_exc
-            stack_info = format_exc()
-            answer = f"Error: {str(e)}\n{stack_info}"
-        return question, answer
+        return question
     if question is None:
-        question, answer = _read_qa_from_cmd()
-    else:
-        try:
-            answer = query(question)
-        except Exception as e:
-            from traceback import format_exc
-            stack_info = format_exc()
-            answer = f"Error: {str(e)}\n{stack_info}"
+        question = _read_q_from_cmd()
+    try:
+        answer = query(question)
+    except Exception as e:
+        from traceback import format_exc
+        stack_info = format_exc()
+        answer = f"Error: {str(e)}\n{stack_info}"
     # log the question and answer
     work_item = {
         "question": question,
