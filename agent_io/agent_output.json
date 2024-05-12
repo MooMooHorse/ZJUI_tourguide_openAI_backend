@@ -1,1 +1,1 @@
-[{"question": "How many books are in library", "enable": true, "answer": "The library at the International Campus of Zhejiang University has a designed collection capacity of 300,000 volumes. Currently, it has over 93,000 volumes of paper books.", "q_id": 42}]
+[{"question": "Can you take off the drone?", "enable": true, "answer": "You answer is composed by the following agents: [UAV Operation Agent]\n{\"command\": {\"Takeoff\": 1}, \"location\": null}", "metadata": {"operation": ["{\"command\": {\"Takeoff\": 1}, \"location\": null}"]}, "q_id": 53}]

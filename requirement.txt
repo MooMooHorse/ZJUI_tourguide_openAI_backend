@@ -10,3 +10,5 @@ pysocks
 fitz
 wordcloud
 paramiko
+PyPDF2
+PyYAML

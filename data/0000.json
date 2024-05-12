@@ -3,5 +3,6 @@
     "location": "",
     "keyword": "",
     "outlook": "",
-    "text": "0000.txt"
+    "text": "0000.txt",
+    "responsible_agent": "rag_agent"
 }

@@ -2,22 +2,24 @@ import sys
 import os 
 cur_file_path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.dirname(cur_file_path))
-from components.q2intent import intent_extraction
-from components.search_engine import SearchEngine
-from components.answer_generation import AnswerGenerator
 from genai.itf import initialize_env
 from openai import OpenAI
 from paths import data_dir
 class RAGAgent():
-    def __init__(self):
+    def __init__(self, vector_store_id = None, assistant_id = None):
         initialize_env()
         self.client = OpenAI()
-        self.assistant = self.client.beta.assistants.create(
-            name="Campus Tour Guide assistant",
-            instructions="You are an campus tour guide to ZJU-UIUC campus. Use you knowledge base to answer questions about ZJU-UIUC campus.",
-            model="gpt-3.5-turbo",
-            tools=[{"type": "file_search"}],
-        )
+        if assistant_id:
+            self.assistant = self.client.beta.assistants.retrieve(assistant_id)
+        else:
+            self.assistant = self.client.beta.assistants.create(
+                name="Campus Tour Guide assistant",
+                instructions="You are an campus tour guide to ZJU-UIUC campus. Use you knowledge base to answer questions about ZJU-UIUC campus.",
+                model="gpt-3.5-turbo",
+                tools=[{"type": "file_search"}],
+            )
+        if vector_store_id:
+            self.update_vector_store_to_assistant(vector_store_id)
     def create_vector_store(self, file_paths):
         # Create a vector store caled "ZJU-UIUC campus knowledge base"
         vector_store = self.client.beta.vector_stores.create(name="ZJU-UIUC campus knowledge base")
@@ -74,7 +76,6 @@ class RAGAgent():
         print("\n".join(citations))
 
 if __name__ == "__main__":
-    agent = RAGAgent()
-    file_paths = [os.path.join(data_dir, file) for file in os.listdir(data_dir)]
-    agent.create_vector_store(file_paths)
+    
+    agent = RAGAgent(vector_store_id='vs_8tnCdtj3clgKx6YpTLK7zAY0', assistant_id='asst_Mtl023T90q5z9CylR5F2V6n6')
     agent.query("How many books are in ZJU-UIUC's library?")

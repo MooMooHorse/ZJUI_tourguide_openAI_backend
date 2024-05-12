@@ -1,0 +1,16 @@
+command:
+  Continue: 5
+  Default: 0
+  Land: 2
+  Start: 3
+  Stop: 4
+  Takeoff: 1
+location:
+  Business Street: 1
+  Clock Tower: 5
+  Dining Hall: 6
+  Library: 4
+  Luckin Coffee: 3
+  North Teaching Building B: 2
+  Qizhen Lake: 7
+  RC 1: 0

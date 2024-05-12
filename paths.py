@@ -9,3 +9,4 @@ openai_env_path = os.path.join(openAI_dir, 'env.json') # paths containing openai
 openai_log_dir = os.path.join(openAI_dir, 'logs') # paths containing openai logs
 test_dir = os.path.join(cur_dir, 'test') # paths containing test
 io_dir = os.path.join(cur_dir, 'agent_io') # paths containing io
+agents_config_dir = os.path.join(cur_dir, 'agents', 'config') # paths containing agents config

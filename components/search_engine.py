@@ -7,13 +7,6 @@ from paths import prompt_dir, data_dir
 import json
 from typing import List, Tuple
 
-def associate_q_w_request(question:str, cur_location:str, locations:List[str]) -> Tuple[str, List[str]]:
-    '''
-    If the question is asociated with the current location of user.
-    '''
-    locations = [cur_location] + locations
-    question = question + f''' I'm currently at {cur_location}.''' 
-    return question, locations
 
 class SearchEngine():
     def __init__(self):
@@ -45,7 +38,7 @@ class SearchEngine():
         ]
         return itf.get_chat_completion_content(message_list, temperature=0)
 
-    def search(self, question:str, cur_location:str, type:int) -> List[dict]:
+    def search(self, question:str, cur_location:str, type:int) -> Tuple[List[dict], List[str]]:
         '''
         If type is 0, return None
         If type is 1, get the nodes w/ location queried by get_location
@@ -70,7 +63,7 @@ class SearchEngine():
             return True
 
         if type == 0:
-            return None
+            return None, []
         
         candidates_locations = []
         files = os.listdir(data_dir)
@@ -87,7 +80,7 @@ class SearchEngine():
             locations = q_locations
         elif type == 2:
             locations = [cur_location] + q_locations
-            question, locations = associate_q_w_request(question, cur_location, locations)
+            
         
         # log choosing candidate locations
         print(f"Choosing candidate locations: {locations} among {candidates_locations}")
@@ -98,18 +91,19 @@ class SearchEngine():
 
         for i in range(len(locations)):
             locations[i] = locations[i].lower().replace(' ', '')
-
+        responsible_agents = []
         for file in node_files:
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
                 if node['location'].lower().replace(' ','') in locations:
-                    print(node['text'])
+                    print(node['text'], node["responsible_agent"])
+                    responsible_agents.append(node["responsible_agent"])
                     with open(os.path.join(data_dir, node['text']), 'r', encoding='utf-8') as f1:
                         text = f1.read()
                     node['text'] = text
                     nodes.append(node)
         
 
-        return nodes
+        return nodes, responsible_agents
 
 

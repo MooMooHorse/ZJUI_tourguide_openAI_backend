@@ -66,6 +66,7 @@ def append_input(work_item:dict, input_fname:str = "agent_input.json") -> dict:
     _work_item = {
         "q_id": max_q_id + 1,
         "question": work_item["question"],
+        "metadata": work_item["metadata"],
         "enable": False
     }
     questions.append(_work_item)
