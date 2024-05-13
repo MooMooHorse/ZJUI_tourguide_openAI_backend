@@ -13,6 +13,7 @@ def read_users_data():
         
         # Read the users.json file
         stdin, stdout, stderr = ssh.exec_command('cat ~/ECE445/data/users.json')
+        # print('read users data successfully')
         users_data = json.loads(stdout.read().decode('utf-8'))
         # if not users_data:
         #     raise Exception("Failed to read users data.")
@@ -94,10 +95,10 @@ def check_if_new_question(user, q_ID) -> Tuple[str, bool, str]:
     '''
     # gps = [user["gps_lat"], user["gps_lon"]]
     gps = [0, 0]
-    if user["questionID"] == q_ID[user["userID"]]:
-        print(q_ID[user["userID"]], user["questionID"])
-        # process the question only if the instruction is "Submit"
-        q_ID[user["userID"]] += 1
+    if user["questionID"] not in q_ID[user["userID"]]:
+        # we solve for questionID and then mark it as solved
+        q_ID[user["userID"]].add(user["questionID"])
+
         if user["instruction"] != "Submit":
             return None, False, None
         else:
@@ -122,8 +123,8 @@ def main():
         users_data = read_users_data()
 
         for user in users_data:
-            if user["userID"] not in q_ID:
-                q_ID[user["userID"]] = 0
+            if user["userID"] not in q_ID.keys():
+                q_ID[user["userID"]] = set() # empty set
             
             # print(q_ID[user["userID"]], user["questionID"])
 

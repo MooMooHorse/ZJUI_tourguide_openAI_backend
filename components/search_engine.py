@@ -92,6 +92,7 @@ class SearchEngine():
         for i in range(len(locations)):
             locations[i] = locations[i].lower().replace(' ', '')
         responsible_agents = []
+        sum_length = 0
         for file in node_files:
             with open(os.path.join(data_dir, file), 'r') as f:
                 node = json.load(f)
@@ -102,6 +103,9 @@ class SearchEngine():
                         text = f1.read()
                     node['text'] = text
                     nodes.append(node)
+                    sum_length += len(text)
+                    if sum_length >= 10000:
+                        break
         
 
         return nodes, responsible_agents

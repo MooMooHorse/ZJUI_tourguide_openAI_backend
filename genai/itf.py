@@ -24,7 +24,7 @@ def initialize_env():
 
     openai.api_key = config["api_key"]
     # set the environment variable
-    os.environ["https_proxy"] = env["https_proxy"]
+    # os.environ["https_proxy"] = env["https_proxy"]
     os.environ["OPENAI_API_KEY"] = config["api_key"]
 
 class OpenAIITF():

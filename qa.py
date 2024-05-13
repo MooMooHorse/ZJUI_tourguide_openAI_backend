@@ -65,24 +65,26 @@ def query(query:str, location:Location="ZJUI Building") -> Tuple[str, dict]:
 
     location = ground_locations(location)
 
-    print(f'''current location: {location}''')
+    print(f'''current location: {location} intent: {intent}''')
 
-    if intent == 2: # intent related to cur location
+    if intent == 1: # intent related to cur location
         query = associate_q_w_request(query, location, [location])
 
     if intent == 1 or intent == 2:
         agent = LocationQAAgent(location, itf)
         answer, agents_involved = agent.query(query, intent)
+        return f'''You answer is composed by the following agents: {agents_involved}\n{answer}''', {
+            "operation": None
+        }
     else:
         agent = UAVOPAgent(itf)
         answer = agent.query(query)
         agents_involved = "[UAV Operation Agent]"
         if answer is None:
             return "Illegal Command to UAV Operation Agent", {}
-    return f'''You answer is composed by the following agents: {agents_involved}\n{answer}''', {
-        "operation": [answer]
-    }
-
+        return f'''You answer is composed by the following agents: {agents_involved}\n{answer}''', {
+            "operation": [answer]
+        }
 
 
 def unit_test_mode():
