@@ -4,17 +4,7 @@ The user's command is listed in the following dict:
 
 command = {"Default": 0, "Takeoff": 1, "Land": 2, "Start":3, "Stop": 4, "Continue": 5}
  
-and the location is listed in the following dict:
-
-location = {"RC 1": 0, 
-                     "Business Street": 1, 
-                     "North Teaching Building B": 2, 
-                     "Luckin Coffee": 3, 
-                     "Library": 4, 
-                     "Clock Tower": 5, 
-                     "Dining Hall": 6, 
-                     "Qizhen Lake": 7
-        }
+and the locations will be listed  and given as an input.
 
 You may answer the location null when the command is not related to the location.
 
@@ -50,6 +40,15 @@ Answer:
 {
     "command": {"Start": 3}
     "location": {"North Teaching Building B": 2}
+}
+
+Question: Can you take me to the Library?
+
+Answer: 
+
+{
+    "command": {"Start": 3}
+    "location": {"Library": 4}
 }
 
 Question: Can you let the drone to stop flying?

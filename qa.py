@@ -21,7 +21,8 @@ def associate_q_w_request(question:str, cur_location:str, locations:List[str]) -
     '''
     If the question is asociated with the current location of user.
     '''
-    question = question + f''' I'm currently at {cur_location}.''' 
+
+    question = question + f'''My current location is {cur_location}.''' 
     return question
 
 def ground_locations(location:str):
@@ -41,7 +42,7 @@ def ground_locations(location:str):
         location = "ZJUI Building"
     return location
 
-def query(query:str, location:Location="ZJUI Building") -> Tuple[str, dict]:
+def query(query:str, location:Location="ZJUI Building", iter = 1) -> Tuple[str, dict]:
     '''
     Input
     -----
@@ -62,7 +63,6 @@ def query(query:str, location:Location="ZJUI Building") -> Tuple[str, dict]:
     '''
     itf = OpenAIITF()
     intent = intent_extraction(query, itf)
-
     location = ground_locations(location)
 
     print(f'''current location: {location} intent: {intent}''')
@@ -70,13 +70,13 @@ def query(query:str, location:Location="ZJUI Building") -> Tuple[str, dict]:
     if intent == 1: # intent related to cur location
         query = associate_q_w_request(query, location, [location])
 
-    if intent == 1 or intent == 2:
+    if intent == 1 or intent == 2: # informational agents
         agent = LocationQAAgent(location, itf)
-        answer, agents_involved = agent.query(query, intent)
+        answer, agents_involved = agent.query(query, intent, iter = iter)
         return f'''You answer is composed by the following agents: {agents_involved}\n{answer}''', {
             "operation": None
         }
-    else:
+    else: # operational agents
         agent = UAVOPAgent(itf)
         answer = agent.query(query)
         agents_involved = "[UAV Operation Agent]"
@@ -104,7 +104,7 @@ def unit_test_mode():
     write_output(work_items)
     
 
-def integrated_mode(question = None, cur_loc = "ZJUI Building") -> Tuple[str, dict]:
+def integrated_mode(question = None, cur_loc = "ZJUI Building", iter = 1) -> Tuple[str, dict]:
     '''
         file io will be used as logs
 
@@ -128,11 +128,13 @@ def integrated_mode(question = None, cur_loc = "ZJUI Building") -> Tuple[str, di
     if question is None:
         question = _read_q_from_cmd()
     try:
-        answer, metadata = query(question, location=cur_loc)
+        answer, metadata = query(question, location=cur_loc, iter = iter)
     except Exception as e:
         from traceback import format_exc
         stack_info = format_exc()
-        answer = f"Error: {str(e)}\n{stack_info}"
+        answer, metadata = f"Error: {str(e)}\n{stack_info}", {
+            "operation": None
+        }
         print(answer)
     # log the question and answer
     work_item = {

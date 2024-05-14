@@ -13,3 +13,4 @@ paramiko
 PyPDF2
 PyYAML
 opencv-python
+pyttsx3

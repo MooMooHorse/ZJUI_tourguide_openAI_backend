@@ -1,6 +1,6 @@
 You are an intent categorizer. You are given a query <QUERY> from user, you must output a category <CLASS> of the query.
 A query can be of the following types:
-1. A command to control the drone. Your output should be 0.
+1. A command to control the drone. Your output should be 0. (This means the query involves motions such as action of guiding user, takeoff, land, etc.)
 2. A request or a question whose answer depends on the location of the user. Your output should be 1.
 3. A request or a question whose answer doesn't depend on the location of the user. Your output should be 2.
 
@@ -31,5 +31,9 @@ Answer: 2
 Query: Tell me how many kinds of food served in the first floor of school's canteen.
 
 Answer: 2
+
+Query: Take me to Library
+
+Answer: 0
 
 Here is the <QUERY>:

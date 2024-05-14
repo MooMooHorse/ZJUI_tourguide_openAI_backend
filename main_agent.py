@@ -36,7 +36,7 @@ def write_users_data(data):
         ssh.connect('47.96.152.177', username='root', password='JXBjxb123')
         
         # Write the users.json file
-        stdin, stdout, stderr = ssh.exec_command('echo \'{}\' > ~/ECE445/data/users.json'.format(json.dumps(data)))
+        stdin, stdout, stderr = ssh.exec_command('echo \'{}\' > ~/ECE445/data/users.json'.format(json.dumps(data, indent=4)))
         
         print("Users data written successfully.")
     except paramiko.ssh_exception.AuthenticationException as e:
@@ -98,7 +98,6 @@ def check_if_new_question(user, q_ID) -> Tuple[str, bool, str]:
     if user["questionID"] not in q_ID[user["userID"]]:
         # we solve for questionID and then mark it as solved
         q_ID[user["userID"]].add(user["questionID"])
-
         if user["instruction"] != "Submit":
             return None, False, None
         else:
@@ -109,14 +108,15 @@ def check_if_new_question(user, q_ID) -> Tuple[str, bool, str]:
 def main():
     users_data = read_users_data()
     q_ID = {}
-    location_dict = {"RC 1": 0, 
-                    "Business Street": 1, 
-                    "North Teaching Building B": 2, 
-                    "Luckin Coffee": 3, 
-                    "Library": 4, 
-                    "Clock Tower": 5, 
-                    "Dining Hall": 6, 
-                    "Qizhen Lake": 7}
+    location_dict = {"Lab": 0, 
+                     "Test Point": 1, 
+                     "North Teaching Building B": 2, 
+                     "Luckin Coffee": 3, 
+                     "Library": 4, 
+                     "Bell Tower": 5, 
+                     "Hainaju": 6, 
+                     "Qizhen Lake": 7,
+                     "Dining Hall": 8 }
     
     while(1):
         time.sleep(1)
@@ -148,13 +148,15 @@ def main():
 
                 send_message_to_server(users_data, ans)
 
-                if operation is not None:
+                if operation is not None and cur_loc is not None and 'wait' not in cur_loc.lower().strip().replace(' ',''):
                     # current version only handles the first operation
                     print(f'''receiving operation: {operation[0]}''')
                     operation = json.loads(operation[0])
                     user['instruction'] = list(operation['command'].keys())[0]
                     if operation['location'] is not None:
-                        user['destination'] = operation['location']
+                        user['destination'] = list(operation['location'].keys())[0]
+                    if cur_loc is not None and 'wait' not in cur_loc.lower().strip().replace(' ',''):
+                        user['cur_location'] = cur_loc
                     user['questionID'] = user['questionID'] + 1
                     write_users_data(users_data)
     return

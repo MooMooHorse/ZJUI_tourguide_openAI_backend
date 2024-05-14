@@ -9,6 +9,7 @@ from genai.itf import OpenAIITF
 from paths import prompt_dir
 import re
 import json
+import yaml
 
 class UAVOPAgent():
     def __init__(self, OpenAI_itf:OpenAIITF = None):
@@ -17,10 +18,23 @@ class UAVOPAgent():
     def query(self, query:str, prompt = 'uav_op_agent.prompt'):
         with open(os.path.join(prompt_dir, prompt), 'r') as f:
             prompt = f.read()
+
+        with open(os.path.join(agents_config_dir, 'uav_op_agent.yaml'), 'r') as infile:
+            data = yaml.safe_load(infile)
+        locations = data['location']
+
         message_list = [
             {
                 "role": "system",
-                "content": prompt
+                "content": prompt + '\nBelow is a list of locations'
+            },
+            {
+                "role": "user",
+                "content": str(locations)
+            },
+            {
+                "role": "system",
+                "content": "Question: "
             },
             {
                 "role": "user",
@@ -67,7 +81,7 @@ class UAVOPAgent():
             }
 
             {
-                "command": {"Default": 0}
+                "command": {"Takeoff": 1}
                 "location": null
             }
 
@@ -86,8 +100,6 @@ class UAVOPAgent():
             location = re.search(r'"location":\s*{"(.*?)"', content).group(1)
         except:
             location = None
-
-        import yaml
 
         with open(os.path.join(agents_config_dir, 'uav_op_agent.yaml'), 'r') as infile:
             data = yaml.safe_load(infile)

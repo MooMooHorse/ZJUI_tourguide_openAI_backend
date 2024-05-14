@@ -13,9 +13,9 @@ class LocationQAAgent():
         self.location = location
         self.OpenAI_itf = OpenAI_itf
 
-    def query(self, query:str, intent:int) -> Tuple[str, str]:
+    def query(self, query:str, intent:int, iter = 1) -> Tuple[str, str]:
         se = SearchEngine()
         ag = AnswerGenerator()
         nodes, responsible_agents = se.search(query, self.location, intent)
-        answer = ag.generate(query, nodes, itf=self.OpenAI_itf)
+        answer = ag.generate(query, nodes, itf=self.OpenAI_itf, iter = iter)
         return answer, str(responsible_agents)
